@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum UserTypeEnum {
+public enum UserTypeEnum implements CodeEnum {
     admin(1, "管理员"),
     ordinary(2, "普通用户");
 
     private final Integer code;
-    private final String stateName;
+    private final String msg;
 }

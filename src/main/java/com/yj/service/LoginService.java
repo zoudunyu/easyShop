@@ -5,9 +5,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.yj.config.SecretConfig;
 import com.yj.dao.master.service.UserInfoService;
+import com.yj.enums.UserTypeEnum;
 import com.yj.exception.MyException;
 import com.yj.model.dto.LoginDto;
 import com.yj.model.vo.LoginVo;
+import com.yj.util.EnumUtil;
 import com.yj.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -76,7 +78,9 @@ public class LoginService {
         String token =
                 JWT.create()
                         .withClaim("username", result.getUsername())
-                        .withClaim("userType", result.getUserType().toString())
+                        .withClaim(
+                                "userType",
+                                EnumUtil.getByCode(result.getUserType(), UserTypeEnum.class))
                         .withIssuer(secretConfig.getIssuer())
                         .withIssuedAt(startDate)
                         .withExpiresAt(expDate)
