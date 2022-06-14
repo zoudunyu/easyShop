@@ -6,7 +6,10 @@ import com.yj.dao.BaseDaoServiceImpl;
 import com.yj.dao.master.entity.UserInfo;
 import com.yj.dao.master.mapper.UserInfoMapper;
 import com.yj.model.dto.LoginDto;
+import com.yj.model.vo.RegisterVo;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 /**
  * 用户表 服务实现类
@@ -43,5 +46,16 @@ public class UserInfoService extends BaseDaoServiceImpl<UserInfoMapper, UserInfo
         loginDto.setPassWord(userInfo.getPassword());
         loginDto.setUserType(userInfo.getUserType());
         return loginDto;
+    }
+
+    public UserInfo voToBean(RegisterVo registerVo) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername(registerVo.getUsername());
+        userInfo.setName(registerVo.getName());
+        userInfo.setPassword(registerVo.getPassword());
+        userInfo.setUserType(2);
+        userInfo.setBalance(BigDecimal.valueOf(0));
+        userInfo.setCreateTime(System.currentTimeMillis());
+        return userInfo;
     }
 }

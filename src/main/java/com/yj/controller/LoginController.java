@@ -1,5 +1,6 @@
 package com.yj.controller;
 
+import com.yj.model.ResponseData;
 import com.yj.model.vo.EncryptionVo;
 import com.yj.service.LoginService;
 import io.swagger.annotations.Api;
@@ -24,16 +25,16 @@ import java.util.Map;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/Login")
-public class LoginController {
+public class LoginController extends BaseController {
 
     private final LoginService loginService;
 
     @ApiOperation("登录 - PC版管理员用户（加密）")
     @PostMapping(value = "/In")
-    public Map<String, String> signIn(@RequestBody @Valid EncryptionVo data) {
+    public ResponseData signIn(@RequestBody @Valid EncryptionVo data) {
         String token = loginService.signIn(data.getData());
         Map<String, String> map = new HashMap<>(1);
         map.put("token", token);
-        return map;
+        return render(map);
     }
 }
