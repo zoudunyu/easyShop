@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: easyshop
+  profiles:
+    include: common
+    active: dev
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://121.4.254.177:13306/easyshop
+          username: root
+          password: academy@db#ps
+          hikari:
+            minimum-idle: 20
+            maximum-pool-size: 50
+            idle-timeout: 180000
+            max-lifetime: 600000
+            connection-timeout: 60000
+            connection-test-query: SELECT 1
+

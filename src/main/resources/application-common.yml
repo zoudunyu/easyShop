@@ -1,0 +1,50 @@
+server:
+  tomcat:
+    max-connections: 20000
+    accept-count: 2000
+    threads:
+      max: 1000
+      min-spare: 200
+    connection-timeout: 60000
+
+spring:
+  mvc:
+    format:
+      date: yyyy-MM-dd HH:mm:ss
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # 启用http上传处理
+  servlet:
+    multipart:
+      enabled: true
+      # 设置单个文件的最大长度
+      max-file-size: 50MB
+      # 设置最大的请求文件的大小
+      max-request-size: 50MB
+      file-size-threshold: 1MB
+
+knife4j:
+  enable: true
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    # Basic认证用户名
+    username: yj
+    # Basic认证密码
+    password: yj12345
+  setting:
+    enableDynamicParameter: true
+    enableHost: true
+
+
+mybatis-plus:
+  mapper-locations: classpath*:com/yj/dao/*/mapper/xml/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    local-cache-scope: STATEMENT
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: INPUT
