@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yj.dao.BaseDaoServiceImpl;
 import com.yj.dao.master.entity.UserInfo;
 import com.yj.dao.master.mapper.UserInfoMapper;
+import com.yj.exception.MyException;
 import com.yj.model.dto.LoginDto;
 import com.yj.model.vo.RegisterVo;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,6 +24,7 @@ import java.math.BigDecimal;
 @Service
 public class UserInfoService extends BaseDaoServiceImpl<UserInfoMapper, UserInfo> {
 
+
     /**
      * 根据用户名获取用户
      *
@@ -32,6 +36,17 @@ public class UserInfoService extends BaseDaoServiceImpl<UserInfoMapper, UserInfo
         QueryWrapper<UserInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper.ge("username", username);
         return getOne(queryWrapper);
+    }
+
+    public UserInfo validation(Integer userId){
+        if (userId == null) {
+            return null;
+        }
+        UserInfo userInfo = getById(userId);
+        if (ObjectUtils.isEmpty(userInfo)) {
+            throw new MyException("用户不存在", "用户异常", HttpStatus.NOT_FOUND);
+        }
+        return userInfo;
     }
 
     /**

@@ -52,6 +52,10 @@ public class Goods implements Serializable {
     @TableField("goods_picture")
     private String goodsPicture;
 
+    @ApiModelProperty(value="商品分类", example = "")
+    @TableField("goods_type")
+    private Integer goodsType;
+
     @ApiModelProperty(value="商品库存", example = "")
     @TableField("goods_stock")
     private Integer goodsStock;

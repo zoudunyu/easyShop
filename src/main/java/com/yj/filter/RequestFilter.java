@@ -1,3 +1,4 @@
+/*
 package com.yj.filter;
 
 import com.auth0.jwt.JWT;
@@ -26,29 +27,35 @@ public class RequestFilter implements Filter {
     private static final String MSG_AUTH_INVALID = "授权认证失败，请重新获取授权";
     private static final String MSG_PERMISSION_INVALID = "权限不足";
 
-    /** 拦截的URL */
+    */
+/** 拦截的URL *//*
+
     String[] includeUrls = new String[] {"/Login", "/Register"};
 
-    /**
+    */
+/**
      * 初始化 filter对象只会创建一次，init方法也只会执行一次。
      *
      * @param filterConfig 过滤器配置
      * @throws ServletException servlet异常
-     */
+     *//*
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
     }
 
-    /**
+    */
+/**
      * 拦截请求过滤器
      *
      * @param servletRequest servlet请求
-     * @param servletResponse servlet响应
-     * @param filterChain 过滤器链
+     * @param response servlet响应
+     * @param chain 过滤器链
      * @throws IOException ioexception
      * @throws ServletException servlet异常
-     */
+     *//*
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -80,12 +87,14 @@ public class RequestFilter implements Filter {
         }
     }
 
-    /**
+    */
+/**
      * 是需要过滤访问路径
      *
      * @param uri uri
      * @return boolean
-     */
+     *//*
+
     private boolean isNeedFilter(String uri) {
         for (String includeUrl : includeUrls) {
             if (uri.contains(includeUrl)) {
@@ -96,12 +105,14 @@ public class RequestFilter implements Filter {
         return true;
     }
 
-    /**
+    */
+/**
      * 解析token，获得令牌数据值
      *
      * @param token 令牌
      * @return {@link TokenVo}
-     */
+     *//*
+
     private TokenVo getTokenDataValue(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(SecretConfig.SECRET);
@@ -121,3 +132,4 @@ public class RequestFilter implements Filter {
         Filter.super.destroy();
     }
 }
+*/
